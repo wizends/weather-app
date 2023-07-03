@@ -1,6 +1,7 @@
-import temp from '../assets/temp.svg'
-import search from '../assets/search.svg'
-import { useMemo, useState } from 'react'
+
+import { SearchIcon } from './SearchIcon'
+import { TemperatureIcon } from './TemperatureIcon'
+import { useEffect, useMemo, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { updateWeather } from '../features/weather/weatherSlice'
 import { getForecast } from '../helpers/apiCall/weather'
@@ -26,7 +27,7 @@ export default function SearchBar () {
     event.preventDefault()
     if (update === '') return
     console.log(searchData)
-    getForecast(searchData)
+    getForecast(searchData || update)
       .then(weather => {
         dispatch(updateWeather(weather))
       })
@@ -39,14 +40,18 @@ export default function SearchBar () {
     setUpdate(event.target.innerText)
     setVisibility(false)
   }
-  window.addEventListener('click', () => {
-    setVisibility(false)
+  useEffect(() => {
+    window.addEventListener('click', () => {
+      setVisibility(false)
+    })
   })
 
   return (
     <div>
-      <form onSubmit={handleSubmit} className='mr-0'>
-        <img width={20} className='absolute left-2 top-10' src={temp} />
+      <form onSubmit={handleSubmit} className='mr-0 relative flex items-end'>
+        <span className='absolute mb-1 left-3'>
+          <TemperatureIcon />
+        </span>
         <input
           id='search'
           type='text'
@@ -57,7 +62,7 @@ export default function SearchBar () {
         />
         {visibility && update.length > 2 && match &&
 
-          <ul className='absolute flex flex-col w-96 items-start left-12 bg-slate-800 rounded-lg p-2 z-50 gap-y-4 overflow-y-scroll h-52'>{
+          <ul className='absolute flex flex-col w-96 items-start left-12 bg-slate-800 rounded-lg p-2 z-50 gap-y-4 overflow-hidden top-20'>{
           match.map(
             country => (
               <li
@@ -73,8 +78,8 @@ export default function SearchBar () {
           )
         }
           </ul>}
-        <button type='submit'>
-          <img width={20} className='absolute right-2 top-10' src={search} />
+        <button type='submit' className='absolute right-3 mb-1'>
+          <SearchIcon />
         </button>
       </form>
     </div>

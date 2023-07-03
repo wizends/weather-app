@@ -27,28 +27,28 @@ export default function Aside () {
   const config = setConfig(data)
 
   return (
-    <section className='backdrop-blur-md border-slate-700 rounded-r-2xl border-r border-r-borderWhite'>
+    <section className='lg:backdrop-blur-md shadow-xl lg:w-96'>
       <SearchBar />
-      <aside className='grid grid-cols-2 content-start pt-20 items-center justify-items-start gap-y-6 gap-x-0 p-4  pl-10'>
+      <aside className='grid grid-cols-2 content-start lg:pt-20 items-center justify-items-start lg:gap-y-6 gap-x-0 p-4  pl-10 '>
         <h1 className='text-6xl'>{Math.round(temp_c)}°</h1>
         <h1 className='text-6xl flex flex-row items-center gap-2'><span className='text-4xl'>+/-</span> {Math.abs(Math.round(temp_c - feelslike_c))}</h1>
-        <h3 className='pt-20'>{wind_degree}°</h3>
-        <h3 className='pt-20'>Wind {wind_kph}k/h</h3>
+        <h3 className='lg:pt-20'>{wind_degree}°</h3>
+        <h3 className='lg:pt-20'>Wind {wind_kph}k/h</h3>
         <div className='flex flex-row ml-4'>
           {icons.map((icon, index) => <img key={index} width={30} className='-ml-4' src={icon} />)}
         </div>
         <h3 className=''>{uv}% Indice uv</h3>
         <h4>Seguro</h4>
         <h4>Peligroso</h4>
-        <ul className='-mt-4 flex flex-col items-start'>
+        <ul className='mt-4 flex flex-col items-start'>
           <li>0%-0.9%</li>
           <li>0.9%-11%</li>
         </ul>
-        <ul className='-mt-4 flex flex-col items-start'>
+        <ul className='mt-4 flex flex-col items-start'>
           <li>12%-38%</li>
           <li>39%-90%</li>
         </ul>
-        <Line className='z-10 max-w-xs text-white max-h-40' {...config} />
+        <Line className='z-10 max-h-32 w-56 text-white' {...config} />
       </aside>
     </section>
   )
