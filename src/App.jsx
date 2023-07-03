@@ -39,13 +39,13 @@ function App () {
     })
     if (bg[0].isDarkMode) {
       setBackground({
-        backgroundImage: `url("src/assets/${bg[0].bg}")`,
+        backgroundImage: `url("/assets/${bg[0].bg}")`,
         color: 'black'
       })
       return
     }
     setBackground({
-      backgroundImage: `url("src/assets/${bg[0].bg}")`
+      backgroundImage: `url("/assets/${bg[0].bg}")`
     })
     console.log(bg)
   }
