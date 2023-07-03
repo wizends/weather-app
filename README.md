@@ -7,3 +7,4 @@
 - `npm install`
 - `npm run dev` or `npm run build` to generate a production build, see the `package.json` to know more!
 
+.
